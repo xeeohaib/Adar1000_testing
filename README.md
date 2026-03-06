@@ -10,6 +10,20 @@ The default configuration sequence (`RX1_MaxG_45`) sets RX Channel 1 to
 
 ---
 
+## Visual Documents
+
+| Document | Description |
+|----------|-------------|
+| [`docs/wiring_diagram.svg`](docs/wiring_diagram.svg) | Colour wiring diagram — ZC702 J63 ↔ ADAR1000-EVALZ P3 |
+| [`docs/spi_timing.svg`](docs/spi_timing.svg) | SPI Mode 0 timing waveform (CSB, SCLK, MOSI, MISO) |
+| [`docs/system_block_diagram.svg`](docs/system_block_diagram.svg) | Full system block diagram with register sequence table |
+| [`docs/register_map.svg`](docs/register_map.svg) | 24-bit SPI word format and register address reference |
+| [`docs/ADAR1000_ZC702_Setup_Guide.pdf`](docs/ADAR1000_ZC702_Setup_Guide.pdf) | Compiled PDF setup guide (10 sections, A4) |
+
+Regenerate the PDF: `python3 docs/generate_pdf.py`
+
+---
+
 ## Quick-Start
 
 ```
@@ -37,7 +51,13 @@ Adar1000_testing/
 ├── scripts/
 │   └── RX1_MaxG_45.txt     Annotated SPI command script
 └── docs/
-    └── wiring_diagram.md   Step-by-step wiring guide, ASCII diagram, pin tables
+    ├── wiring_diagram.md              Step-by-step wiring guide, ASCII diagram, pin tables
+    ├── wiring_diagram.svg             Colour wiring diagram (ZC702 J63 ↔ ADAR1000 P3)
+    ├── spi_timing.svg                 SPI Mode 0 timing waveform (CSB/SCLK/MOSI/MISO)
+    ├── system_block_diagram.svg       System block diagram + register sequence table
+    ├── register_map.svg               24-bit SPI word format + register address reference
+    ├── ADAR1000_ZC702_Setup_Guide.pdf Compiled PDF setup guide (10 sections, A4)
+    └── generate_pdf.py                Python script to regenerate the PDF (requires reportlab)
 ```
 
 ---

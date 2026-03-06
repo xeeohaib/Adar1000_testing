@@ -1,5 +1,24 @@
 # ADAR1000-EVALZ ↔ ZC702 FPGA — Wiring Diagram & Step-by-Step Guide
 
+## Visual Documents
+
+The following SVG diagrams and compiled PDF are available in this directory:
+
+| File | Description | Preview |
+|------|-------------|---------|
+| [`wiring_diagram.svg`](wiring_diagram.svg) | Colour wiring diagram — ZC702 J63 ↔ ADAR1000-EVALZ P3 with signal legend | ![wiring](wiring_diagram.svg) |
+| [`spi_timing.svg`](spi_timing.svg) | SPI Mode 0 timing waveform — CSB, SCLK, MOSI, MISO with 24-bit field annotations | ![timing](spi_timing.svg) |
+| [`system_block_diagram.svg`](system_block_diagram.svg) | Full system block diagram — PC → ZC702 → ADAR1000 → VNA, power supplies, register table | ![block](system_block_diagram.svg) |
+| [`register_map.svg`](register_map.svg) | 24-bit SPI word format and key register address reference | ![regmap](register_map.svg) |
+| [`ADAR1000_ZC702_Setup_Guide.pdf`](ADAR1000_ZC702_Setup_Guide.pdf) | Compiled PDF — all diagrams + step-by-step guide (10 sections, A4) | — |
+
+To regenerate the PDF after edits, run:
+```bash
+python3 docs/generate_pdf.py
+```
+
+---
+
 ## Overview
 
 This document explains how to physically connect the **ADAR1000-EVALZ** phased-array beamformer board to the **Xilinx ZC702** evaluation board using the **PMOD J63** connector (ZC702) and the **P3 PMOD** header (ADAR1000-EVALZ), and then run the `RX1_MaxG_45` configuration that sets RX Channel 1 to maximum gain with a 45° phase shift.

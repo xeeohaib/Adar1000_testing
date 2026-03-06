@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 480" width="1100" height="480" font-family="'Segoe UI',Arial,sans-serif">
+
+  <!-- Background -->
+  <rect width="1100" height="480" fill="#1a1a2e"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="1100" height="54" fill="#0f3460"/>
+  <text x="550" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#e0e0e0">
+    ADAR1000 SPI Word Format &amp; Register Map
+  </text>
+  <text x="550" y="40" text-anchor="middle" font-size="12" fill="#a0c4ff">
+    24-bit Write Word Layout · {0, 4'b0, addr[10:0], data[7:0]} · MSB first
+  </text>
+
+  <!-- ══════════════════════════════════════════════════════
+       24-bit word field breakdown diagram
+  ══════════════════════════════════════════════════════ -->
+
+  <!-- Outer bit-number row: 23 down to 0 -->
+  <text x="50"  y="85" text-anchor="middle" font-size="10" font-weight="bold" fill="#a0c4ff">Bit</text>
+  <!-- Bit numbers above each cell -->
+  <!-- Fields: b23 (1), b22-b19 (4), b18-b8 (11), b7-b0 (8) -->
+  <!-- Total width: 1040 px across 24 cells = ~43.3px per cell -->
+  <!-- Field widths: 1*43=43, 4*43=173, 11*43=478, 8*43=346 -->
+
+  <!-- ── Field: R/W (bit 23) ── -->
+  <rect x="80"  y="90" width="43" height="50" rx="3" fill="#1a0e2a" stroke="#ce93d8" stroke-width="2"/>
+  <text x="101" y="109" text-anchor="middle" font-size="9"  fill="#ce93d8">R/W</text>
+  <text x="101" y="124" text-anchor="middle" font-size="14" font-weight="bold" fill="#e040fb">0</text>
+  <text x="101" y="152" text-anchor="middle" font-size="8"  fill="#ce93d8">bit 23</text>
+
+  <!-- ── Field: Reserved (bits 22-19) ── -->
+  <rect x="123" y="90" width="173" height="50" rx="3" fill="#0e1a1a" stroke="#4dd0e1" stroke-width="2"/>
+  <text x="209"  y="109" text-anchor="middle" font-size="9"  fill="#4dd0e1">Reserved</text>
+  <text x="209"  y="124" text-anchor="middle" font-size="12" font-weight="bold" fill="#4dd0e1">0000</text>
+  <text x="123"  y="152" text-anchor="middle" font-size="8"  fill="#4dd0e1">bit 22</text>
+  <text x="296"  y="152" text-anchor="middle" font-size="8"  fill="#4dd0e1">bit 19</text>
+
+  <!-- ── Field: Address (bits 18-8) ── -->
+  <rect x="296"  y="90" width="478" height="50" rx="3" fill="#001020" stroke="#ff9800" stroke-width="2"/>
+  <text x="535"  y="109" text-anchor="middle" font-size="11" font-weight="bold" fill="#ff9800">Register Address  [10:0]</text>
+  <text x="535"  y="124" text-anchor="middle" font-size="10" fill="#ffb04f">A10  A9  A8  A7  A6  A5  A4  A3  A2  A1  A0</text>
+  <text x="296"  y="152" text-anchor="middle" font-size="8"  fill="#ff9800">bit 18</text>
+  <text x="774"  y="152" text-anchor="middle" font-size="8"  fill="#ff9800">bit 8</text>
+
+  <!-- ── Field: Data (bits 7-0) ── -->
+  <rect x="774"  y="90" width="346" height="50" rx="3" fill="#001a08" stroke="#4caf50" stroke-width="2"/>
+  <text x="947"  y="109" text-anchor="middle" font-size="11" font-weight="bold" fill="#4caf50">Register Data  [7:0]</text>
+  <text x="947"  y="124" text-anchor="middle" font-size="10" fill="#80e080">D7  D6  D5  D4  D3  D2  D1  D0</text>
+  <text x="774"  y="152" text-anchor="middle" font-size="8"  fill="#4caf50">bit 7</text>
+  <text x="1120" y="152" text-anchor="middle" font-size="8"  fill="#4caf50">bit 0</text>
+
+  <!-- Field width braces -->
+  <line x1="80"  y1="146" x2="122"  y2="146" stroke="#ce93d8" stroke-width="1"/>
+  <line x1="123" y1="146" x2="295"  y2="146" stroke="#4dd0e1" stroke-width="1"/>
+  <line x1="296" y1="146" x2="773"  y2="146" stroke="#ff9800" stroke-width="1"/>
+  <line x1="774" y1="146" x2="1119" y2="146" stroke="#4caf50" stroke-width="1"/>
+
+  <!-- Field sizes below -->
+  <text x="101"  y="165" text-anchor="middle" font-size="9" fill="#ce93d8">1 bit</text>
+  <text x="209"  y="165" text-anchor="middle" font-size="9" fill="#4dd0e1">4 bits</text>
+  <text x="535"  y="165" text-anchor="middle" font-size="9" fill="#ff9800">11 bits</text>
+  <text x="947"  y="165" text-anchor="middle" font-size="9" fill="#4caf50">8 bits</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       Three worked examples
+  ══════════════════════════════════════════════════════ -->
+  <text x="50" y="196" text-anchor="start" font-size="12" font-weight="bold" fill="#a0c4ff">
+    Worked Examples:
+  </text>
+
+  <!-- Example 1: Soft Reset 0x000081 -->
+  <rect x="30"  y="205" width="330" height="80" rx="6" fill="#0d2137" stroke="#ce93d8" stroke-width="1.5"/>
+  <text x="195" y="222" text-anchor="middle" font-size="11" font-weight="bold" fill="#ce93d8">Step 1 — Soft Reset</text>
+  <text x="45"  y="239" font-size="10" font-family="monospace" fill="#ffd54f">Word = 0x000081</text>
+  <text x="45"  y="255" font-size="9"  font-family="monospace" fill="#e0e0e0">
+    0 | 0000 | 00000000000 | 10000001
+  </text>
+  <text x="45"  y="271" font-size="9"  fill="#b0c0d0">
+    R/W=0  Rsvd=0  Addr=0x000  Data=0x81
+  </text>
+  <text x="45"  y="278" font-size="8"  fill="#607080">
+    Register 0x000, bit[7]=SOFT_RST
+  </text>
+
+  <!-- Example 2: LDO trim 0x040055 -->
+  <rect x="380" y="205" width="330" height="80" rx="6" fill="#0d2137" stroke="#ff9800" stroke-width="1.5"/>
+  <text x="545" y="222" text-anchor="middle" font-size="11" font-weight="bold" fill="#ff9800">Step 3 — LDO Trim</text>
+  <text x="395" y="239" font-size="10" font-family="monospace" fill="#ffd54f">Word = 0x040055</text>
+  <text x="395" y="255" font-size="9"  font-family="monospace" fill="#e0e0e0">
+    0 | 0000 | 10000000000 | 01010101
+  </text>
+  <text x="395" y="271" font-size="9"  fill="#b0c0d0">
+    R/W=0  Rsvd=0  Addr=0x400  Data=0x55
+  </text>
+  <text x="395" y="278" font-size="8"  fill="#607080">
+    Register 0x400, trim code 0x55 → ≈1.8 V
+  </text>
+
+  <!-- Example 3: Max Gain 0x0010FF -->
+  <rect x="730" y="205" width="340" height="80" rx="6" fill="#0d2137" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="900" y="222" text-anchor="middle" font-size="11" font-weight="bold" fill="#4caf50">Step 9 — RX Ch1 Max Gain</text>
+  <text x="745" y="239" font-size="10" font-family="monospace" fill="#ffd54f">Word = 0x0010FF</text>
+  <text x="745" y="255" font-size="9"  font-family="monospace" fill="#e0e0e0">
+    0 | 0000 | 00000010000 | 11111111
+  </text>
+  <text x="745" y="271" font-size="9"  fill="#b0c0d0">
+    R/W=0  Rsvd=0  Addr=0x010  Data=0xFF
+  </text>
+  <text x="745" y="278" font-size="8"  fill="#607080">
+    Register 0x010, gain=255 (max, attenuator bypassed)
+  </text>
+
+  <!-- ══════════════════════════════════════════════════════
+       Key register address reference table
+  ══════════════════════════════════════════════════════ -->
+  <rect x="30" y="300" width="1040" height="165" rx="8" fill="#0d1a2a" stroke="#263a50" stroke-width="1.5"/>
+  <text x="550" y="320" text-anchor="middle" font-size="12" font-weight="bold" fill="#a0c4ff">
+    Key Register Address Reference (ADAR1000)
+  </text>
+
+  <!-- 3-column layout -->
+  <!-- Col 1: Init & Reset -->
+  <text x="50"  y="340" font-size="10" font-weight="bold" fill="#64b5f6">Init &amp; Reset</text>
+  <text x="50"  y="356" font-size="9"  font-family="monospace" fill="#e0e0e0">0x000  SPI Config / Reset</text>
+  <text x="50"  y="370" font-size="9"  font-family="monospace" fill="#e0e0e0">0x400  LDO Trim Register</text>
+
+  <!-- Col 2: Mode Control -->
+  <text x="50"  y="392" font-size="10" font-weight="bold" fill="#ce93d8">Mode &amp; Bias Control</text>
+  <text x="50"  y="408" font-size="9"  font-family="monospace" fill="#e0e0e0">0x038  RAM Bypass</text>
+  <text x="50"  y="422" font-size="9"  font-family="monospace" fill="#e0e0e0">0x02E  RX Enable</text>
+  <text x="50"  y="436" font-size="9"  font-family="monospace" fill="#e0e0e0">0x031  TR Switch</text>
+  <text x="50"  y="450" font-size="9"  font-family="monospace" fill="#e0e0e0">0x034  LNA Bias</text>
+  <text x="50"  y="464" font-size="9"  font-family="monospace" fill="#e0e0e0">0x035  VGA/VM Bias</text>
+
+  <!-- Col 3: Channel Regs -->
+  <text x="400" y="340" font-size="10" font-weight="bold" fill="#ff9800">Channel 1 Registers</text>
+  <text x="400" y="356" font-size="9"  font-family="monospace" fill="#e0e0e0">0x010  RX CH1 Gain</text>
+  <text x="400" y="370" font-size="9"  font-family="monospace" fill="#e0e0e0">0x011  TX CH1 Gain</text>
+  <text x="400" y="384" font-size="9"  font-family="monospace" fill="#e0e0e0">0x014  RX CH1 VM I</text>
+  <text x="400" y="398" font-size="9"  font-family="monospace" fill="#e0e0e0">0x015  RX CH1 VM Q</text>
+  <text x="400" y="412" font-size="9"  font-family="monospace" fill="#e0e0e0">0x016  TX CH1 VM I</text>
+  <text x="400" y="426" font-size="9"  font-family="monospace" fill="#e0e0e0">0x017  TX CH1 VM Q</text>
+
+  <!-- Col 4: Ch2-4 shorthand -->
+  <text x="640" y="340" font-size="10" font-weight="bold" fill="#80cbc4">Channels 2–4 (same offset)</text>
+  <text x="640" y="356" font-size="9"  font-family="monospace" fill="#e0e0e0">0x012  RX CH2 Gain</text>
+  <text x="640" y="370" font-size="9"  font-family="monospace" fill="#e0e0e0">0x013  RX CH3/4 Gain</text>
+  <text x="640" y="384" font-size="9"  font-family="monospace" fill="#e0e0e0">0x018  RX CH2 VM I/Q</text>
+  <text x="640" y="398" font-size="9"  font-family="monospace" fill="#e0e0e0">0x01C  RX CH3 VM I/Q</text>
+  <text x="640" y="412" font-size="9"  font-family="monospace" fill="#e0e0e0">0x020  RX CH4 VM I/Q</text>
+
+  <!-- Col 5: Load/Beam RAM -->
+  <text x="870" y="340" font-size="10" font-weight="bold" fill="#4caf50">Load &amp; Beam RAM</text>
+  <text x="870" y="356" font-size="9"  font-family="monospace" fill="#e0e0e0">0x028  LDRX Override</text>
+  <text x="870" y="370" font-size="9"  font-family="monospace" fill="#e0e0e0">0x029  LDTX Override</text>
+  <text x="870" y="384" font-size="9"  font-family="monospace" fill="#e0e0e0">0x038  Beam RAM Control</text>
+  <text x="870" y="398" font-size="9"  font-family="monospace" fill="#e0e0e0">0x100–0x1FF  Beam RAM</text>
+
+</svg>
