@@ -1,0 +1,27 @@
+# Simulation binaries and waveform dumps
+sim/tb_spi_master
+sim/tb_adar1000_ctrl
+sim/*.vcd
+
+# Vivado project and output files
+*.xpr
+*.jou
+*.log
+*.pb
+*.str
+*.mcs
+.Xil/
+*/*/impl_1/
+*/*/synth_1/
+*_utilization_synth.rpt
+*_utilization_placed.rpt
+*_timing_summary_routed.rpt
+*.bit
+*.ltx
+*.runs/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.sim/
+*.gen/
+*.srcs/

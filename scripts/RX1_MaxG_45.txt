@@ -1,0 +1,84 @@
+# RX1_MaxG_45.txt
+# ADAR1000 Configuration Script — RX Channel 1, Maximum Gain, 45° Phase Shift
+#
+# Format: each non-comment line is a 24-bit SPI write word in hexadecimal.
+# The 24-bit word is structured as:
+#   Bit  [23]    : R/W  (0 = write)
+#   Bits [22:12] : 11-bit register address
+#   Bits [11:8]  : reserved (always 0)
+#   Bits  [7:0]  : 8-bit data
+#
+# Example decode: 0x000081
+#   Bit  23     = 0          → write operation
+#   Bits 22:12  = 00000000000 → register address 0x000
+#   Bits 11:8   = 0000        → reserved
+#   Bits  7:0   = 10000001   → data 0x81
+#
+# ── Section 1: Device Initialisation & Reset ─────────────────────────────────
+#
+# Register 0x000 = 0x81  →  Soft Reset
+#   Sets the SOFT_RESET bit; all internal registers return to default state.
+#   The host must wait at least 100 µs after this write before continuing.
+000081
+
+# Register 0x000 = 0x18  →  Enable SDO pin, select 4-wire SPI mode
+#   SDO_ACTIVE (bit 3) = 1  : enables the SDO output pin for readback.
+#   LSB_FIRST  (bit 4) = 1  : keep 0 for MSB-first (default); set per design.
+#   After this write the host can read back register values via SDO.
+000018
+
+# Register 0x400 = 0x55  →  LDO trim ≈ 1.8 V
+#   Adjusts the internal bandgap / LDO reference to deliver a stable 1.8 V
+#   supply to the BiCMOS core logic.
+040055
+
+# ── Section 2: RAM Bypass & Operating Mode ───────────────────────────────────
+
+# Register 0x038 = 0x60  →  RAM Bypass
+#   BEAM_RAM_BYPASS (bit 6) = 1 : the chip reads phase/gain data directly
+#   from the working registers rather than from the internal Beam RAM.
+003860
+
+# Register 0x02E = 0x7F  →  Receive Enable — all four channels
+#   RX_EN[3:0] = 0111  (channels 1–4) plus bias enable bits.
+#   Enables the LNA and receive signal path for every channel.
+002E7F
+
+# Register 0x034 = 0x08  →  LNA Bias
+#   Sets the DC bias current for the Low-Noise Amplifiers on all channels.
+003408
+
+# ── Section 3: Bias and Switch Control ───────────────────────────────────────
+
+# Register 0x035 = 0x16  →  RX Bias (VGA & Vector Modulator)
+#   Configures the operating currents for the Variable Gain Amplifiers
+#   and the I/Q Vector Modulators on the receive path.
+003516
+
+# Register 0x031 = 0x20  →  TR Switch → Receive mode via SPI
+#   TR_SPI (bit 5) = 1 : overrides the external TR pin and forces the
+#   transmit/receive switch into receive mode under SPI control.
+003120
+
+# ── Section 4: Channel 1 Configuration ───────────────────────────────────────
+
+# Register 0x010 = 0xFF  →  RX Channel 1 gain = maximum
+#   CH1_RX_GAIN[7:0] = 0xFF (255) : attenuator fully bypassed, VGA at maximum.
+0010FF
+
+# Register 0x014 = 0x36  →  RX Channel 1 Vector Modulator I-value (45°)
+#   Sets the in-phase (I) component of the complex weight for Ch 1.
+#   Together with Q = 0x36 this produces a 45° phase rotation.
+001436
+
+# Register 0x015 = 0x36  →  RX Channel 1 Vector Modulator Q-value (45°)
+#   Sets the quadrature (Q) component of the complex weight for Ch 1.
+001536
+
+# ── Section 5: Load / Commit ──────────────────────────────────────────────────
+
+# Register 0x028 = 0x01  →  LDRX Override
+#   LDRX_OVR (bit 0) = 1 : transfers all buffered gain and phase values
+#   from the working registers into the active RF signal path.
+#   This is the final "commit" step — without it the RF path is unchanged.
+002801
