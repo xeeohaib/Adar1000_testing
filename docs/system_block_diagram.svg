@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 680" width="1100" height="680" font-family="'Segoe UI',Arial,sans-serif">
+
+  <!-- Background -->
+  <rect width="1100" height="680" fill="#1a1a2e"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="1100" height="54" fill="#0f3460"/>
+  <text x="550" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#e0e0e0">
+    ADAR1000 + ZC702 System Block Diagram
+  </text>
+  <text x="550" y="40" text-anchor="middle" font-size="12" fill="#a0c4ff">
+    Hardware Setup for Receive Mode — RX1 Maximum Gain, 45° Phase Shift
+  </text>
+
+  <!-- ── Arrow defs ── -->
+  <defs>
+    <marker id="arrowB" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L8,4 z" fill="#5bc0eb"/>
+    </marker>
+    <marker id="arrowY" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L8,4 z" fill="#fdd835"/>
+    </marker>
+    <marker id="arrowO" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L8,4 z" fill="#ff9800"/>
+    </marker>
+    <marker id="arrowG" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L8,4 z" fill="#4caf50"/>
+    </marker>
+    <marker id="arrowC" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L8,4 z" fill="#4dd0e1"/>
+    </marker>
+    <marker id="arrowR" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L8,4 z" fill="#ef5350"/>
+    </marker>
+    <marker id="arrowP" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L8,4 z" fill="#ce93d8"/>
+    </marker>
+    <marker id="arrowBrev" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
+      <path d="M0,0 L0,8 L8,4 z" fill="#5bc0eb"/>
+    </marker>
+  </defs>
+
+  <!-- ══════════════════════════════════════════════════════
+       ROW 1: Host PC
+  ══════════════════════════════════════════════════════ -->
+  <rect x="20"  y="70"  width="150" height="80" rx="10" fill="#0d2137" stroke="#1e6ab5" stroke-width="2"/>
+  <text x="95"  y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#5bc0eb">Host PC</text>
+  <text x="95"  y="118" text-anchor="middle" font-size="10" fill="#7aaccc">Windows / Linux</text>
+  <text x="95"  y="132" text-anchor="middle" font-size="9"  fill="#607080">Vivado XSCT / SDK</text>
+
+  <!-- USB arrow PC → ZC702 -->
+  <line x1="170" y1="110" x2="235" y2="110" stroke="#5bc0eb" stroke-width="2"
+        marker-end="url(#arrowB)"/>
+  <text x="202" y="104" text-anchor="middle" font-size="9" fill="#5bc0eb">USB-JTAG</text>
+  <text x="202" y="124" text-anchor="middle" font-size="9" fill="#607080">bitstream /</text>
+  <text x="202" y="134" text-anchor="middle" font-size="9" fill="#607080">debug</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       ROW 1: ZC702 board
+  ══════════════════════════════════════════════════════ -->
+  <rect x="240" y="60" width="440" height="200" rx="10" fill="#0d2137" stroke="#1e6ab5" stroke-width="2.5"/>
+  <text x="460" y="85"  text-anchor="middle" font-size="13" font-weight="bold" fill="#5bc0eb">ZC702 (XC7Z020)</text>
+
+  <!-- PS block -->
+  <rect x="255" y="95" width="140" height="80" rx="6" fill="#0b3d6e" stroke="#3a86c8" stroke-width="1.5"/>
+  <text x="325" y="120" text-anchor="middle" font-size="11" font-weight="bold" fill="#5bc0eb">Zynq PS</text>
+  <text x="325" y="137" text-anchor="middle" font-size="9" fill="#7aaccc">ARM Cortex-A9</text>
+  <text x="325" y="151" text-anchor="middle" font-size="9" fill="#7aaccc">FCLK0 = 100 MHz</text>
+  <text x="325" y="165" text-anchor="middle" font-size="8" fill="#607080">clk source for PL</text>
+
+  <!-- PL block -->
+  <rect x="415" y="95" width="250" height="150" rx="6" fill="#0b3d6e" stroke="#3a86c8" stroke-width="1.5"/>
+  <text x="540" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="#5bc0eb">Zynq PL (FPGA Fabric)</text>
+
+  <!-- top.v sub-block -->
+  <rect x="425" y="126" width="230" height="108" rx="5" fill="#0a2850" stroke="#2a6faa" stroke-width="1"/>
+  <text x="540" y="143" text-anchor="middle" font-size="10" font-weight="bold" fill="#a0c8f0">top.v</text>
+
+  <!-- spi_master block -->
+  <rect x="432" y="150" width="104" height="36" rx="4" fill="#163b5c" stroke="#3a86c8" stroke-width="1"/>
+  <text x="484" y="165" text-anchor="middle" font-size="9" fill="#b0d4f0">spi_master.v</text>
+  <text x="484" y="178" text-anchor="middle" font-size="8" fill="#607080">24-bit SPI Master</text>
+
+  <!-- adar1000_ctrl block -->
+  <rect x="544" y="150" width="104" height="36" rx="4" fill="#163b5c" stroke="#3a86c8" stroke-width="1"/>
+  <text x="596" y="165" text-anchor="middle" font-size="9" fill="#b0d4f0">adar1000_ctrl.v</text>
+  <text x="596" y="178" text-anchor="middle" font-size="8" fill="#607080">12-step sequencer</text>
+
+  <!-- Arrow between ctrl and spi_master -->
+  <line x1="544" y1="168" x2="536" y2="168" stroke="#5bc0eb" stroke-width="1.5" marker-end="url(#arrowB)"/>
+
+  <!-- J63 PMOD connector symbol on ZC702 -->
+  <rect x="655" y="130" width="16" height="100" rx="4" fill="#0f3460" stroke="#3a86c8" stroke-width="1.5"/>
+  <text x="663" y="185" text-anchor="middle" font-size="8" transform="rotate(-90,663,185)" fill="#7aaccc">J63 PMOD</text>
+  <!-- pin dots -->
+  <circle cx="663" cy="140" r="3" fill="#fdd835"/>
+  <circle cx="663" cy="153" r="3" fill="#ff9800"/>
+  <circle cx="663" cy="166" r="3" fill="#4caf50"/>
+  <circle cx="663" cy="179" r="3" fill="#64b5f6"/>
+  <circle cx="663" cy="192" r="3" fill="#90a4ae"/>
+  <circle cx="663" cy="205" r="3" fill="#ef5350"/>
+
+  <!-- FCLK0 arrow PS → PL -->
+  <line x1="395" y1="148" x2="415" y2="148" stroke="#fdd835" stroke-width="1.5" marker-end="url(#arrowY)"/>
+  <text x="405" y="143" text-anchor="middle" font-size="7" fill="#fdd835">clk</text>
+
+  <!-- LED indicator on ZC702 -->
+  <circle cx="490" cy="235" r="12" fill="#1a2a10" stroke="#69f020" stroke-width="1.5"/>
+  <circle cx="490" cy="235" r="7"  fill="#39ff14" opacity="0.8"/>
+  <text x="490" y="255" text-anchor="middle" font-size="8" fill="#69f020">LED done</text>
+
+  <!-- Reset button on ZC702 -->
+  <rect x="560" y="225" width="50" height="22" rx="5" fill="#2a0a0a" stroke="#ef5350" stroke-width="1.5"/>
+  <text x="585" y="240" text-anchor="middle" font-size="9" fill="#ef5350">SW4 ↻</text>
+  <text x="585" y="258" text-anchor="middle" font-size="8" fill="#607080">rst_n</text>
+
+  <!-- go_i label -->
+  <text x="430" y="255" text-anchor="middle" font-size="9" fill="#7aaccc">go_i tied HIGH → auto-start</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       SPI wires: J63 → ADAR1000 P3
+  ══════════════════════════════════════════════════════ -->
+  <!-- SCLK -->
+  <line x1="671" y1="140" x2="730" y2="140" stroke="#fdd835" stroke-width="2.5" marker-end="url(#arrowY)"/>
+  <text x="700"  y="133" text-anchor="middle" font-size="8" fill="#fdd835">SCLK</text>
+  <!-- MOSI -->
+  <line x1="671" y1="153" x2="730" y2="153" stroke="#ff9800" stroke-width="2.5" marker-end="url(#arrowO)"/>
+  <text x="700"  y="166" text-anchor="middle" font-size="8" fill="#ff9800">SDIO</text>
+  <!-- MISO (bidirectional arrow) -->
+  <line x1="730" y1="166" x2="671" y2="166" stroke="#4caf50" stroke-width="2.5" marker-end="url(#arrowG)"/>
+  <text x="700"  y="179" text-anchor="middle" font-size="8" fill="#4caf50">SDO</text>
+  <!-- CSB -->
+  <line x1="671" y1="179" x2="730" y2="179" stroke="#64b5f6" stroke-width="2.5" marker-end="url(#arrowB)"/>
+  <text x="700"  y="192" text-anchor="middle" font-size="8" fill="#64b5f6">CSB1</text>
+  <!-- GND -->
+  <line x1="671" y1="192" x2="730" y2="192" stroke="#90a4ae" stroke-width="1.5"/>
+  <text x="700"  y="205" text-anchor="middle" font-size="8" fill="#90a4ae">GND</text>
+  <!-- VCC -->
+  <line x1="671" y1="205" x2="730" y2="205" stroke="#ef5350" stroke-width="2" marker-end="url(#arrowR)"/>
+  <text x="700"  y="218" text-anchor="middle" font-size="8" fill="#ef5350">VCC</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       ADAR1000-EVALZ board
+  ══════════════════════════════════════════════════════ -->
+  <rect x="735" y="60" width="340" height="360" rx="10" fill="#1a0808" stroke="#a53030" stroke-width="2.5"/>
+  <text x="905"  y="85"  text-anchor="middle" font-size="13" font-weight="bold" fill="#ff6b6b">ADAR1000-EVALZ</text>
+  <text x="905"  y="102" text-anchor="middle" font-size="10" fill="#cc8080">Analog Devices Beamformer Board</text>
+
+  <!-- P3 header symbol -->
+  <rect x="740" y="120" width="14" height="100" rx="4" fill="#2a0808" stroke="#993333" stroke-width="1.5"/>
+  <text x="747" y="172" text-anchor="middle" font-size="7" transform="rotate(-90,747,172)" fill="#cc8080">P3 PMOD</text>
+  <circle cx="747" cy="130" r="3" fill="#64b5f6"/>
+  <circle cx="747" cy="143" r="3" fill="#ff9800"/>
+  <circle cx="747" cy="156" r="3" fill="#4caf50"/>
+  <circle cx="747" cy="169" r="3" fill="#fdd835"/>
+  <circle cx="747" cy="182" r="3" fill="#90a4ae"/>
+  <circle cx="747" cy="195" r="3" fill="#ef5350"/>
+
+  <!-- Level translators -->
+  <rect x="762" y="118" width="140" height="44" rx="5" fill="#1a1a00" stroke="#c8a000" stroke-width="1.5"/>
+  <text x="832" y="137" text-anchor="middle" font-size="10" fill="#ffd54f">Level Translators</text>
+  <text x="832" y="152" text-anchor="middle" font-size="8"  fill="#b09040">3.3 V ↔ 1.8 V</text>
+
+  <!-- SPI interface wires to level translators -->
+  <line x1="754" y1="155" x2="762" y2="140" stroke="#607080" stroke-width="1.5"/>
+
+  <!-- ADAR1000 IC block -->
+  <rect x="762" y="175" width="295" height="120" rx="6" fill="#2a0808" stroke="#993333" stroke-width="1.5"/>
+  <text x="910"  y="196" text-anchor="middle" font-size="11" font-weight="bold" fill="#ff6b6b">ADAR1000 IC</text>
+  <text x="910"  y="212" text-anchor="middle" font-size="9"  fill="#cc8080">4-Ch Beamformer · 8–16 GHz · BiCMOS</text>
+
+  <!-- LNA + VGA + VM blocks for 4 channels -->
+  <rect x="768" y="220" width="60" height="36" rx="3" fill="#3a0c0c" stroke="#993333" stroke-width="1"/>
+  <text x="798" y="235" text-anchor="middle" font-size="8" fill="#ff9090">LNA+VGA</text>
+  <text x="798" y="248" text-anchor="middle" font-size="8" fill="#cc6060">VM Ch1</text>
+
+  <rect x="834" y="220" width="60" height="36" rx="3" fill="#3a0c0c" stroke="#993333" stroke-width="1"/>
+  <text x="864" y="235" text-anchor="middle" font-size="8" fill="#ff9090">LNA+VGA</text>
+  <text x="864" y="248" text-anchor="middle" font-size="8" fill="#cc6060">VM Ch2</text>
+
+  <rect x="900" y="220" width="60" height="36" rx="3" fill="#3a0c0c" stroke="#993333" stroke-width="1"/>
+  <text x="930" y="235" text-anchor="middle" font-size="8" fill="#ff9090">LNA+VGA</text>
+  <text x="930" y="248" text-anchor="middle" font-size="8" fill="#cc6060">VM Ch3</text>
+
+  <rect x="966" y="220" width="60" height="36" rx="3" fill="#3a0c0c" stroke="#993333" stroke-width="1"/>
+  <text x="996" y="235" text-anchor="middle" font-size="8" fill="#ff9090">LNA+VGA</text>
+  <text x="996" y="248" text-anchor="middle" font-size="8" fill="#cc6060">VM Ch4</text>
+
+  <!-- Internal SPI register bank -->
+  <rect x="850" y="260" width="140" height="26" rx="3" fill="#1a0000" stroke="#cc5050" stroke-width="1"/>
+  <text x="920" y="278" text-anchor="middle" font-size="9" fill="#ff9090">SPI Registers + Beam RAM</text>
+
+  <!-- RF combiner/splitter -->
+  <rect x="762" y="308" width="295" height="26" rx="3" fill="#071520" stroke="#26a69a" stroke-width="1.5"/>
+  <text x="910" y="326" text-anchor="middle" font-size="9" fill="#4dd0e1">
+    Internal TR Switch / RF Beam Combiner
+  </text>
+
+  <!-- Power rails on ADAR1000-EVALZ -->
+  <rect x="762" y="342" width="295" height="64" rx="5" fill="#1a0808" stroke="#993333" stroke-width="1"/>
+  <text x="910" y="360" text-anchor="middle" font-size="10" font-weight="bold" fill="#ff6b6b">Power Rails</text>
+  <rect x="768" y="366" width="88" height="30" rx="3" fill="#1a0000" stroke="#ef5350" stroke-width="1.5"/>
+  <text x="812" y="380" text-anchor="middle" font-size="9" fill="#ef5350">AVDD3 +3.3 V</text>
+  <text x="812" y="392" text-anchor="middle" font-size="8" fill="#cc6060">≤500 mA</text>
+  <rect x="862" y="366" width="88" height="30" rx="3" fill="#1a001a" stroke="#ff5aad" stroke-width="1.5"/>
+  <text x="906" y="380" text-anchor="middle" font-size="9" fill="#ff5aad">AVDD1 −5.0 V</text>
+  <text x="906" y="392" text-anchor="middle" font-size="8" fill="#cc40a0">≤200 mA</text>
+  <text x="985" y="380" text-anchor="middle" font-size="24" fill="#ffd54f">⚠</text>
+  <text x="985" y="398" text-anchor="middle" font-size="8"  fill="#ffd54f">Bench PSU</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       Bench power supplies (bottom-right)
+  ══════════════════════════════════════════════════════ -->
+  <rect x="735" y="438" width="160" height="70" rx="8" fill="#0a0808" stroke="#ef5350" stroke-width="2"/>
+  <text x="815" y="458" text-anchor="middle" font-size="11" font-weight="bold" fill="#ef5350">Bench PSU</text>
+  <text x="815" y="474" text-anchor="middle" font-size="10" fill="#ef5350">+3.3 V / −5.0 V</text>
+  <text x="815" y="490" text-anchor="middle" font-size="9"  fill="#cc6060">Current limited</text>
+  <text x="815" y="503" text-anchor="middle" font-size="8"  fill="#cc6060">500 mA / 200 mA</text>
+
+  <!-- PSU → ADAR1000 power arrows -->
+  <line x1="815" y1="438" x2="815" y2="396" stroke="#ef5350" stroke-width="2" marker-end="url(#arrowR)"/>
+
+  <!-- ══════════════════════════════════════════════════════
+       VNA (bottom-left of ADAR1000 section)
+  ══════════════════════════════════════════════════════ -->
+  <rect x="735" y="440" width="160" height="70" rx="8" fill="#071520" stroke="#26a69a" stroke-width="2"/>
+  <!-- shift VNA to avoid overlap -->
+  <rect x="905" y="440" width="170" height="70" rx="8" fill="#071520" stroke="#26a69a" stroke-width="2"/>
+  <text x="990" y="460" text-anchor="middle" font-size="11" font-weight="bold" fill="#4dd0e1">Vector Network</text>
+  <text x="990" y="476" text-anchor="middle" font-size="11" font-weight="bold" fill="#4dd0e1">Analyzer (VNA)</text>
+  <text x="990" y="491" text-anchor="middle" font-size="9"  fill="#26a69a">8 – 16 GHz sweep</text>
+  <text x="990" y="505" text-anchor="middle" font-size="9"  fill="#26a69a">S11, S21 measurement</text>
+
+  <!-- RF SMA connectors on ADAR1000-EVALZ board -->
+  <rect x="762" y="440" width="130" height="60" rx="5" fill="#071520" stroke="#26a69a" stroke-width="1.5"/>
+  <text x="827" y="456" text-anchor="middle" font-size="10" font-weight="bold" fill="#4dd0e1">RF SMA Ports</text>
+  <rect x="768" y="462" width="52" height="24" rx="3" fill="#071520" stroke="#26a69a" stroke-width="1.5"/>
+  <text x="794" y="478" text-anchor="middle" font-size="10" fill="#4dd0e1">RF_IO</text>
+  <rect x="826" y="462" width="52" height="24" rx="3" fill="#071520" stroke="#26a69a" stroke-width="1.5"/>
+  <text x="852" y="478" text-anchor="middle" font-size="10" fill="#4dd0e1">RX1</text>
+
+  <!-- RF_IO → VNA Port 1 -->
+  <line x1="905" y1="474" x2="884" y2="474" stroke="#4dd0e1" stroke-width="2" marker-end="url(#arrowC)"/>
+  <!-- RX1 → VNA Port 2 -->
+  <line x1="905" y1="487" x2="884" y2="487" stroke="#4dd0e1" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowC)"/>
+  <text x="895" y="462" text-anchor="middle" font-size="8" fill="#26a69a">P1</text>
+  <text x="895" y="500" text-anchor="middle" font-size="8" fill="#26a69a">P2</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       Register sequence table (left-bottom)
+  ══════════════════════════════════════════════════════ -->
+  <rect x="20" y="290" width="700" height="375" rx="10" fill="#0d1a2a" stroke="#263a50" stroke-width="1.5"/>
+  <text x="370" y="314" text-anchor="middle" font-size="13" font-weight="bold" fill="#a0c4ff">
+    RX1_MaxG_45 — SPI Register Write Sequence
+  </text>
+
+  <!-- Table header -->
+  <rect x="30" y="320" width="680" height="24" rx="3" fill="#1e3a6e"/>
+  <text x="55"  y="337" font-size="10" font-weight="bold" fill="#a0c4ff">Step</text>
+  <text x="100" y="337" font-size="10" font-weight="bold" fill="#a0c4ff">SPI Word</text>
+  <text x="185" y="337" font-size="10" font-weight="bold" fill="#a0c4ff">Reg</text>
+  <text x="230" y="337" font-size="10" font-weight="bold" fill="#a0c4ff">Data</text>
+  <text x="280" y="337" font-size="10" font-weight="bold" fill="#a0c4ff">Description</text>
+  <text x="560" y="337" font-size="10" font-weight="bold" fill="#a0c4ff">Section</text>
+
+  <!-- Table rows (12 registers) -->
+  <!-- Row data: [step, word, reg, data, description, section, color] -->
+  <!-- Step 1 -->
+  <rect x="30" y="344" width="680" height="22" rx="2" fill="#0d2137"/>
+  <text x="55"  y="358" font-size="9" fill="#e0e0e0">1</text>
+  <text x="100" y="358" font-size="9" font-family="monospace" fill="#ffd54f">0x000081</text>
+  <text x="185" y="358" font-size="9" font-family="monospace" fill="#b0b0b0">0x000</text>
+  <text x="230" y="358" font-size="9" font-family="monospace" fill="#b0b0b0">0x81</text>
+  <text x="280" y="358" font-size="9" fill="#e0e0e0">Soft Reset (wait ≥100 µs after)</text>
+  <text x="560" y="358" font-size="9" fill="#64b5f6">Init &amp; Reset</text>
+
+  <!-- Step 2 -->
+  <rect x="30" y="366" width="680" height="22" rx="2" fill="#0a1e30"/>
+  <text x="55"  y="380" font-size="9" fill="#e0e0e0">2</text>
+  <text x="100" y="380" font-size="9" font-family="monospace" fill="#ffd54f">0x000018</text>
+  <text x="185" y="380" font-size="9" font-family="monospace" fill="#b0b0b0">0x000</text>
+  <text x="230" y="380" font-size="9" font-family="monospace" fill="#b0b0b0">0x18</text>
+  <text x="280" y="380" font-size="9" fill="#e0e0e0">Enable SDO pin, 4-wire SPI mode</text>
+  <text x="560" y="380" font-size="9" fill="#64b5f6">Init &amp; Reset</text>
+
+  <!-- Step 3 -->
+  <rect x="30" y="388" width="680" height="22" rx="2" fill="#0d2137"/>
+  <text x="55"  y="402" font-size="9" fill="#e0e0e0">3</text>
+  <text x="100" y="402" font-size="9" font-family="monospace" fill="#ffd54f">0x040055</text>
+  <text x="185" y="402" font-size="9" font-family="monospace" fill="#b0b0b0">0x400</text>
+  <text x="230" y="402" font-size="9" font-family="monospace" fill="#b0b0b0">0x55</text>
+  <text x="280" y="402" font-size="9" fill="#e0e0e0">Trim internal LDO to ≈1.8 V</text>
+  <text x="560" y="402" font-size="9" fill="#64b5f6">Init &amp; Reset</text>
+
+  <!-- Step 4 -->
+  <rect x="30" y="410" width="680" height="22" rx="2" fill="#0a1e30"/>
+  <text x="55"  y="424" font-size="9" fill="#e0e0e0">4</text>
+  <text x="100" y="424" font-size="9" font-family="monospace" fill="#ce93d8">0x003860</text>
+  <text x="185" y="424" font-size="9" font-family="monospace" fill="#b0b0b0">0x038</text>
+  <text x="230" y="424" font-size="9" font-family="monospace" fill="#b0b0b0">0x60</text>
+  <text x="280" y="424" font-size="9" fill="#e0e0e0">RAM Bypass — use working registers</text>
+  <text x="560" y="424" font-size="9" fill="#ce93d8">RAM Bypass</text>
+
+  <!-- Step 5 -->
+  <rect x="30" y="432" width="680" height="22" rx="2" fill="#0d2137"/>
+  <text x="55"  y="446" font-size="9" fill="#e0e0e0">5</text>
+  <text x="100" y="446" font-size="9" font-family="monospace" fill="#ce93d8">0x002E7F</text>
+  <text x="185" y="446" font-size="9" font-family="monospace" fill="#b0b0b0">0x02E</text>
+  <text x="230" y="446" font-size="9" font-family="monospace" fill="#b0b0b0">0x7F</text>
+  <text x="280" y="446" font-size="9" fill="#e0e0e0">Receive Enable — all 4 channels</text>
+  <text x="560" y="446" font-size="9" fill="#ce93d8">RAM Bypass</text>
+
+  <!-- Step 6 -->
+  <rect x="30" y="454" width="680" height="22" rx="2" fill="#0a1e30"/>
+  <text x="55"  y="468" font-size="9" fill="#e0e0e0">6</text>
+  <text x="100" y="468" font-size="9" font-family="monospace" fill="#ce93d8">0x003408</text>
+  <text x="185" y="468" font-size="9" font-family="monospace" fill="#b0b0b0">0x034</text>
+  <text x="230" y="468" font-size="9" font-family="monospace" fill="#b0b0b0">0x08</text>
+  <text x="280" y="468" font-size="9" fill="#e0e0e0">LNA Bias — sets LNA operating current</text>
+  <text x="560" y="468" font-size="9" fill="#ce93d8">RAM Bypass</text>
+
+  <!-- Step 7 -->
+  <rect x="30" y="476" width="680" height="22" rx="2" fill="#0d2137"/>
+  <text x="55"  y="490" font-size="9" fill="#e0e0e0">7</text>
+  <text x="100" y="490" font-size="9" font-family="monospace" fill="#80cbc4">0x003516</text>
+  <text x="185" y="490" font-size="9" font-family="monospace" fill="#b0b0b0">0x035</text>
+  <text x="230" y="490" font-size="9" font-family="monospace" fill="#b0b0b0">0x16</text>
+  <text x="280" y="490" font-size="9" fill="#e0e0e0">RX VGA / Vector-Modulator bias</text>
+  <text x="560" y="490" font-size="9" fill="#80cbc4">Bias &amp; Switch</text>
+
+  <!-- Step 8 -->
+  <rect x="30" y="498" width="680" height="22" rx="2" fill="#0a1e30"/>
+  <text x="55"  y="512" font-size="9" fill="#e0e0e0">8</text>
+  <text x="100" y="512" font-size="9" font-family="monospace" fill="#80cbc4">0x003120</text>
+  <text x="185" y="512" font-size="9" font-family="monospace" fill="#b0b0b0">0x031</text>
+  <text x="230" y="512" font-size="9" font-family="monospace" fill="#b0b0b0">0x20</text>
+  <text x="280" y="512" font-size="9" fill="#e0e0e0">TR Switch → Receive mode (SPI override)</text>
+  <text x="560" y="512" font-size="9" fill="#80cbc4">Bias &amp; Switch</text>
+
+  <!-- Step 9 -->
+  <rect x="30" y="520" width="680" height="22" rx="2" fill="#0d2137"/>
+  <text x="55"  y="534" font-size="9" fill="#e0e0e0">9</text>
+  <text x="100" y="534" font-size="9" font-family="monospace" fill="#ff9800">0x0010FF</text>
+  <text x="185" y="534" font-size="9" font-family="monospace" fill="#b0b0b0">0x010</text>
+  <text x="230" y="534" font-size="9" font-family="monospace" fill="#b0b0b0">0xFF</text>
+  <text x="280" y="534" font-size="9" fill="#e0e0e0">RX Ch1 gain = maximum (attenuator off)</text>
+  <text x="560" y="534" font-size="9" fill="#ff9800">Ch1 Config</text>
+
+  <!-- Step 10 -->
+  <rect x="30" y="542" width="680" height="22" rx="2" fill="#0a1e30"/>
+  <text x="55"  y="556" font-size="9" fill="#e0e0e0">10</text>
+  <text x="100" y="556" font-size="9" font-family="monospace" fill="#ff9800">0x001436</text>
+  <text x="185" y="556" font-size="9" font-family="monospace" fill="#b0b0b0">0x014</text>
+  <text x="230" y="556" font-size="9" font-family="monospace" fill="#b0b0b0">0x36</text>
+  <text x="280" y="556" font-size="9" fill="#e0e0e0">RX Ch1 Vector-Modulator I = 0x36 → 45°</text>
+  <text x="560" y="556" font-size="9" fill="#ff9800">Ch1 Config</text>
+
+  <!-- Step 11 -->
+  <rect x="30" y="564" width="680" height="22" rx="2" fill="#0d2137"/>
+  <text x="55"  y="578" font-size="9" fill="#e0e0e0">11</text>
+  <text x="100" y="578" font-size="9" font-family="monospace" fill="#ff9800">0x001536</text>
+  <text x="185" y="578" font-size="9" font-family="monospace" fill="#b0b0b0">0x015</text>
+  <text x="230" y="578" font-size="9" font-family="monospace" fill="#b0b0b0">0x36</text>
+  <text x="280" y="578" font-size="9" fill="#e0e0e0">RX Ch1 Vector-Modulator Q = 0x36 → 45°</text>
+  <text x="560" y="578" font-size="9" fill="#ff9800">Ch1 Config</text>
+
+  <!-- Step 12 -->
+  <rect x="30" y="586" width="680" height="22" rx="2" fill="#0a1e30"/>
+  <text x="55"  y="600" font-size="9" fill="#e0e0e0">12</text>
+  <text x="100" y="600" font-size="9" font-family="monospace" fill="#4caf50">0x002801</text>
+  <text x="185" y="600" font-size="9" font-family="monospace" fill="#b0b0b0">0x028</text>
+  <text x="230" y="600" font-size="9" font-family="monospace" fill="#b0b0b0">0x01</text>
+  <text x="280" y="600" font-size="9" fill="#e0e0e0">LDRX Override — commit to active RF path</text>
+  <text x="560" y="600" font-size="9" fill="#4caf50">Load / Commit</text>
+
+  <!-- Expected results box -->
+  <rect x="30" y="616" width="680" height="44" rx="5" fill="#0a2010" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="370" y="634" text-anchor="middle" font-size="10" font-weight="bold" fill="#4caf50">
+    Expected VNA Results after configuration:
+  </text>
+  <text x="370" y="651" text-anchor="middle" font-size="9" fill="#80e080">
+    Gain (S21): ≈ +10 dB at 8–16 GHz  ·  Return Loss (S11 RX1, S22 RF_IO): &lt; −10 dB  ·  Phase Ch1: 45°
+  </text>
+
+</svg>

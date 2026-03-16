@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560" width="1100" height="560" font-family="'Segoe UI',Arial,sans-serif">
+
+  <!-- Background -->
+  <rect width="1100" height="560" fill="#1a1a2e"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="1100" height="54" fill="#0f3460"/>
+  <text x="550" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#e0e0e0">
+    SPI Mode 0 Timing Diagram — ADAR1000 24-bit Write Transaction
+  </text>
+  <text x="550" y="40" text-anchor="middle" font-size="12" fill="#a0c4ff">
+    CPOL=0, CPHA=0 · MSB first · SCLK = 12.5 MHz · 24-bit word = {0, 4'b0, addr[10:0], data[7:0]}
+  </text>
+
+  <!-- ── Signal name column ── -->
+  <rect x="10" y="60" width="100" height="490" rx="6" fill="#0d2137" stroke="#1e4a80" stroke-width="1"/>
+  <text x="60" y="130" text-anchor="middle" font-size="12" font-weight="bold" fill="#b0c8e0">CSB</text>
+  <text x="60" y="230" text-anchor="middle" font-size="12" font-weight="bold" fill="#fdd835">SCLK</text>
+  <text x="60" y="330" text-anchor="middle" font-size="12" font-weight="bold" fill="#ff9800">MOSI</text>
+  <text x="60" y="430" text-anchor="middle" font-size="12" font-weight="bold" fill="#4caf50">MISO</text>
+
+  <!-- ── Waveform area ── -->
+  <rect x="115" y="60" width="975" height="490" rx="6" fill="#0d1a2a" stroke="#1e4a80" stroke-width="1"/>
+
+  <!-- Time axis -->
+  <line x1="115" y1="535" x2="1090" y2="535" stroke="#3a5a7a" stroke-width="1"/>
+  <text x="550" y="553" text-anchor="middle" font-size="10" fill="#607080">Time →  (not to scale)</text>
+
+  <!-- ── Phase labels at top ── -->
+  <text x="180" y="80"  text-anchor="middle" font-size="10" fill="#607080">Idle</text>
+  <text x="255" y="80"  text-anchor="middle" font-size="10" fill="#a0c4ff">Assert</text>
+  <text x="680" y="80"  text-anchor="middle" font-size="10" fill="#a0c4ff">Shift 24 bits (SCLK ×24)</text>
+  <text x="1000" y="80" text-anchor="middle" font-size="10" fill="#a0c4ff">Hold/Deassert</text>
+
+  <!-- ── Vertical phase dividers ── -->
+  <line x1="220" y1="85"  x2="220" y2="530" stroke="#263a50" stroke-width="1" stroke-dasharray="6,4"/>
+  <line x1="290" y1="85"  x2="290" y2="530" stroke="#263a50" stroke-width="1" stroke-dasharray="6,4"/>
+  <line x1="970" y1="85"  x2="970" y2="530" stroke="#263a50" stroke-width="1" stroke-dasharray="6,4"/>
+  <line x1="1030" y1="85" x2="1030" y2="530" stroke="#263a50" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- ══════════════════════════════════════════════════════
+       CSB waveform  (idle=high, active=low)
+  ══════════════════════════════════════════════════════ -->
+  <!-- High during idle -->
+  <polyline points="120,110 220,110" stroke="#90a4ae" stroke-width="2.5" fill="none"/>
+  <!-- Falling edge at assert -->
+  <polyline points="220,110 220,150" stroke="#90a4ae" stroke-width="2.5" fill="none"/>
+  <!-- Low during transaction + hold -->
+  <polyline points="220,150 1030,150" stroke="#90a4ae" stroke-width="2.5" fill="none"/>
+  <!-- Rising edge on deassert -->
+  <polyline points="1030,150 1030,110" stroke="#90a4ae" stroke-width="2.5" fill="none"/>
+  <!-- High after deassert -->
+  <polyline points="1030,110 1090,110" stroke="#90a4ae" stroke-width="2.5" fill="none"/>
+
+  <!-- CSB "HIGH" / "LOW" labels -->
+  <text x="170" y="107" text-anchor="middle" font-size="9" fill="#90a4ae">HIGH</text>
+  <text x="630" y="165" text-anchor="middle" font-size="9" fill="#90a4ae">LOW (active)</text>
+  <text x="1060" y="107" text-anchor="middle" font-size="9" fill="#90a4ae">HIGH</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCLK waveform
+       CLK_DIV=4 → 24 rising+falling pairs in shift region 290–970
+  ══════════════════════════════════════════════════════ -->
+  <!-- SCLK idle low before assert -->
+  <polyline points="120,230 290,230" stroke="#fdd835" stroke-width="2.5" fill="none"/>
+
+  <!-- Generate 24 clock cycles in 680 px (290 to 970) -->
+  <!-- Each cycle = 680/24 ≈ 28.3 px wide; half = 14.15 px -->
+  <!-- Using JavaScript-style expansion manually for 24 cycles -->
+  <polyline stroke="#fdd835" stroke-width="2.5" fill="none" points="
+    290,230
+    290,190 304,190 304,230
+    304,230 318,230 318,190
+    318,190 332,190 332,230
+    332,230 346,230 346,190
+    346,190 360,190 360,230
+    360,230 374,230 374,190
+    374,190 388,190 388,230
+    388,230 402,230 402,190
+    402,190 416,190 416,230
+    416,230 430,230 430,190
+    430,190 444,190 444,230
+    444,230 458,230 458,190
+    458,190 472,190 472,230
+    472,230 486,230 486,190
+    486,190 500,190 500,230
+    500,230 514,230 514,190
+    514,190 528,190 528,230
+    528,230 542,230 542,190
+    542,190 556,190 556,230
+    556,230 570,230 570,190
+    570,190 584,190 584,230
+    584,230 598,230 598,190
+    598,190 612,190 612,230
+    612,230 626,230 626,190
+    626,190 640,190 640,230
+    640,230 654,230 654,190
+    654,190 668,190 668,230
+    668,230 682,230 682,190
+    682,190 696,190 696,230
+    696,230 710,230 710,190
+    710,190 724,190 724,230
+    724,230 738,230 738,190
+    738,190 752,190 752,230
+    752,230 766,230 766,190
+    766,190 780,190 780,230
+    780,230 794,230 794,190
+    794,190 808,190 808,230
+    808,230 822,230 822,190
+    822,190 836,190 836,230
+    836,230 850,230 850,190
+    850,190 864,190 864,230
+    864,230 878,230 878,190
+    878,190 892,190 892,230
+    892,230 906,230 906,190
+    906,190 920,190 920,230
+    920,230 934,230 934,190
+    934,190 948,190 948,230
+    948,230 970,230
+  "/>
+
+  <!-- ↑ sample markers (rising edges) for first 4 bits -->
+  <text x="297" y="185" text-anchor="middle" font-size="9" fill="#ffd54f">↑</text>
+  <text x="297" y="178" text-anchor="middle" font-size="8" fill="#ffd54f">sample</text>
+  <text x="955" y="185" text-anchor="middle" font-size="8" fill="#ffd54f">sample</text>
+
+  <!-- SCLK idle low after transaction -->
+  <polyline points="970,230 1090,230" stroke="#fdd835" stroke-width="2.5" fill="none"/>
+
+  <!-- ══════════════════════════════════════════════════════
+       MOSI waveform  — 24-bit word 0x000081 (soft-reset example)
+       Binary: 0000 0000 0000 0000 1000 0001
+  ══════════════════════════════════════════════════════ -->
+  <!-- Idle (undefined/high-z before CSB) shown as mid-line -->
+  <polyline points="120,330 290,330" stroke="#607080" stroke-width="1.5" stroke-dasharray="4,3" fill="none"/>
+
+  <!-- 24 MOSI bits between 290 and 970 (each 28.3 px wide) -->
+  <!-- Word = 0x000081 = 0000 0000 0000 0000 1000 0001 -->
+  <!-- bits[23..0]: 0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 1 0 0 0 | 0 0 0 1 -->
+  <!-- Bits 23–17 = 0 -->
+  <polyline stroke="#ff9800" stroke-width="2.5" fill="none" points="
+    290,370
+    290,330
+    304,330 318,330 332,330 346,330 360,330 374,330 388,330
+    402,330 416,330 430,330 444,330 458,330 472,330 486,330
+    500,330 514,330 528,330 542,330 556,330 570,330 584,330
+    598,330 612,330 626,330 640,330 654,330 668,330 682,330
+    696,330 710,330 724,330 738,330 752,330 766,330
+    766,370
+    794,370
+    794,330
+    808,330 822,330 836,330 850,330 864,330 878,330 892,330 906,330 920,330 934,330 948,330
+    948,370
+    970,370
+  "/>
+  <!-- bit transitions overlay — shade high regions -->
+  <rect x="766" y="330" width="28" height="40" fill="#ff9800" opacity="0.15"/>
+  <rect x="948" y="330" width="22" height="40" fill="#ff9800" opacity="0.15"/>
+
+  <!-- Bit-field annotation boxes on MOSI -->
+  <!-- R/W bit (b23) = 0 -->
+  <rect x="290" y="305" width="14" height="16" rx="2" fill="#1a1000" stroke="#ff9800" stroke-width="1"/>
+  <text x="297" y="316" text-anchor="middle" font-size="7" fill="#ff9800">0</text>
+  <!-- Reserved (b22:19) = 0000 -->
+  <rect x="304" y="305" width="56" height="16" rx="2" fill="#1a1000" stroke="#ff9800" stroke-width="1"/>
+  <text x="332" y="316" text-anchor="middle" font-size="7" fill="#ff9800">RSVD 0000</text>
+  <!-- Addr (b18:8) = 00000000000 = 0x000 -->
+  <rect x="360" y="305" width="310" height="16" rx="2" fill="#1a1000" stroke="#ff9800" stroke-width="1"/>
+  <text x="515" y="316" text-anchor="middle" font-size="8" fill="#ff9800">ADDR[10:0] = 0x000  (11 bits)</text>
+  <!-- Data (b7:0) = 0x81 = 10000001 -->
+  <rect x="670" y="305" width="224" height="16" rx="2" fill="#1a1000" stroke="#ff9800" stroke-width="1"/>
+  <text x="782" y="316" text-anchor="middle" font-size="8" fill="#ff9800">DATA[7:0] = 0x81  (8 bits)</text>
+
+  <!-- Bit number labels above SCLK for first/last few -->
+  <text x="297" y="87" text-anchor="middle" font-size="8" fill="#607080">b23</text>
+  <text x="311" y="87" text-anchor="middle" font-size="8" fill="#607080">b22</text>
+  <text x="956" y="87" text-anchor="middle" font-size="8" fill="#607080">b0</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       MISO waveform  — high-Z until SDO enabled (Step 2)
+  ══════════════════════════════════════════════════════ -->
+  <polyline points="120,430 290,430" stroke="#607080" stroke-width="1.5" stroke-dasharray="4,3" fill="none"/>
+  <polyline points="290,430 970,430" stroke="#4caf50" stroke-width="2.5" fill="none"/>
+  <polyline points="970,430 1090,430" stroke="#607080" stroke-width="1.5" stroke-dasharray="4,3" fill="none"/>
+
+  <!-- MISO annotation -->
+  <text x="630" y="422" text-anchor="middle" font-size="9" fill="#4caf50">
+    SDO readback (available after Step 2: Enable SDO, 0x000018)
+  </text>
+
+  <!-- ── Timing arrows and annotations ── -->
+  <!-- tCSS: CSB setup (assert → first rising SCLK) -->
+  <line x1="220" y1="500" x2="297" y2="500" stroke="#607080" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="220" y1="495" x2="220" y2="505" stroke="#607080" stroke-width="1"/>
+  <line x1="297" y1="495" x2="297" y2="505" stroke="#607080" stroke-width="1"/>
+  <text x="258" y="515" text-anchor="middle" font-size="9" fill="#607080">t_CSS ≥ 10 ns</text>
+
+  <!-- tCSH: last falling SCLK → CSB deassert -->
+  <line x1="948" y1="500" x2="1030" y2="500" stroke="#607080" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="948" y1="495" x2="948" y2="505" stroke="#607080" stroke-width="1"/>
+  <line x1="1030" y1="495" x2="1030" y2="505" stroke="#607080" stroke-width="1"/>
+  <text x="989" y="515" text-anchor="middle" font-size="9" fill="#607080">t_CSH ≥ 10 ns</text>
+
+  <!-- SCLK period annotation -->
+  <line x1="290" y1="488" x2="318" y2="488" stroke="#fdd835" stroke-width="1"/>
+  <line x1="290" y1="483" x2="290" y2="493" stroke="#fdd835" stroke-width="1"/>
+  <line x1="318" y1="483" x2="318" y2="493" stroke="#fdd835" stroke-width="1"/>
+  <text x="304" y="482" text-anchor="middle" font-size="8" fill="#fdd835">T=80ns</text>
+
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#607080"/>
+    </marker>
+  </defs>
+
+  <!-- ── Bottom note ── -->
+  <rect x="115" y="540" width="975" height="12" rx="3" fill="#0d1a2a"/>
+  <text x="600" y="550" text-anchor="middle" font-size="9" fill="#607080">
+    Example transaction: Write 0x81 to register 0x000 (Soft Reset) · Full word = 0x000081 · MOSI is don't-care on rising SCLK in write-only mode
+  </text>
+
+</svg>
